@@ -187,7 +187,7 @@
       <h3 class="live-title">Twitch</h3>
       <img class="platform-logo" src="twitch-logo.png" alt="Twitch">
       <div class="video-container">
-        <video id="twitch-preview" autoplay loop muted poster="poster-twitch.jpg">
+        <video id="twitch-preview-container" autoplay loop muted poster="poster-twitch.jpg">
           <source src="tv.mp4" type="video/mp4">
         </video>
       </div>
@@ -197,7 +197,7 @@
       <h3 class="live-title">YouTube</h3>
       <img class="platform-logo" src="youtube-logo.png" alt="YouTube">
       <div class="video-container">
-        <video id="youtube-preview" autoplay loop muted poster="poster-yt.jpg">
+        <video id="youtube-preview-container" autoplay loop muted poster="poster-yt.jpg">
           <source src="tv.mp4" type="video/mp4">
         </video>
       </div>
@@ -210,9 +210,57 @@
         <video id="kick-preview" autoplay loop muted poster="poster-kick.jpg">
           <source src="tv.mp4" type="video/mp4">
         </video>
-      </div>
     </div>
   </section>
-<script src="live-status.js"></script>
+<script>
+  async function checkLiveStatus() {
+    // Twitch
+    const twitchUsername = 'charly_asmr';
+    const twitchClientId = 'TU_CLIENT_ID_TWITCH'; // Reemplaza con tu verdadero Client ID de Twitch
+    const twitchApiUrl = https://api.twitch.tv/helix/streams?user_login=${twitchUsername};
+
+    const twitchResponse = await fetch(twitchApiUrl, {
+      headers: {
+        'Client-ID': twitchClientId,
+        'Authorization': 'Bearer TU_TOKEN_TWITCH' // Puedes omitir si solo usas Client ID y tu app está pública
+      }
+    });
+
+    const twitchData = await twitchResponse.json();
+    const isTwitchLive = twitchData.data && twitchData.data.length > 0;
+
+    const twitchContainer = document.getElementById('twitch-preview-container');
+    twitchContainer.innerHTML = isTwitchLive
+      ? <iframe src="https://player.twitch.tv/?channel=${twitchUsername}&parent=${location.hostname}" frameborder="0" allowfullscreen></iframe>
+      : <video autoplay muted loop><source src="tv.mp4" type="video/mp4"></video>;
+
+    // YouTube
+    const youtubeChannelId = 'UC_LyA3gojME5UI6vwHiM7Tw'; // Canal: carloserm2
+    const youtubeApiKey = 'AIzaSyDVINaXhfUsmtB9jWTWYW-C3Oa7kDOx4w0';
+    const ytSearch = https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${youtubeChannelId}&eventType=live&type=video&key=${youtubeApiKey};
+
+    const ytResponse = await fetch(ytSearch);
+    const ytData = await ytResponse.json();
+    const isYouTubeLive = ytData.items && ytData.items.length > 0;
+
+    const youtubeContainer = document.getElementById('youtube-preview-container');
+    youtubeContainer.innerHTML = isYouTubeLive
+      ? <iframe src="https://www.youtube.com/embed/${ytData.items[0].id.videoId}?autoplay=1" frameborder="0" allowfullscreen></iframe>
+      : <video autoplay muted loop><source src="tv.mp4" type="video/mp4"></video>;
+
+    // Kick (requiere fetch directo a HTML)
+    const kickUsername = 'charly_asmr';
+    const kickRes = await fetch(https://kick.com/api/v1/channels/${kickUsername});
+    const kickJson = await kickRes.json();
+    const isKickLive = kickJson.livestream !== null;
+
+    const kickContainer = document.getElementById('kick-preview-container');
+    kickContainer.innerHTML = isKickLive
+      ? <iframe src="https://kick.com/embed/${kickUsername}" frameborder="0" allowfullscreen></iframe>
+      : <video autoplay muted loop><source src="tv.mp4" type="video/mp4"></video>;
+  }
+
+  document.addEventListener("DOMContentLoaded", checkLiveStatus);
+</script>
 </body>
 </html>
