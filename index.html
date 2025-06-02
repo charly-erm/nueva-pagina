@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Charly ASMR</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      color: white;
+      background: black;
+      overflow-x: hidden;
+    }
+
+    /* Fondo de video */
+    #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    header {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      filter: blur(1px);
+    }
+
+    h1 {
+      font-size: 2rem;
+      background: linear-gradient(to right, red, orange, yellow, green, cyan, blue, violet);
+      background-clip: text;
+      color: transparent;
+      animation: rainbow 4s linear infinite;
+    }
+
+    @keyframes rainbow {
+      0% {background-position: 0%}
+      100% {background-position: 100%}
+    }
+
+    .section {
+      margin: 2rem auto;
+      padding: 1rem;
+      max-width: 600px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 15px;
+      background: rgba(0,0,0,0.3);
+    }
+
+    .section h2 {
+      text-align: center;
+      color: white;
+    }
+
+    .social-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .social-buttons a {
+      padding: 0.5rem 1rem;
+      background: #333;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #ddd;
+    }
+
+    .donation-button {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .donation-button a {
+      padding: 0.7rem 1.5rem;
+      background: #444;
+      border-radius: 10px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .live-preview {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      background: rgba(0,0,0,0.3);
+    }
+
+    .live-preview video, .live-preview iframe {
+      width: 100%;
+      max-height: 300px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .live-title {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .platform-logo {
+      width: 30px;
+      position: absolute;
+      margin: 5px;
+    }
+
+    .video-container {
+      position: relative;
+    }
+
+    /* Etiquetas para cambio */
+    /* Cambia el video de fondo aquí */
+    /* Cambia imagen/video de NO LIVE aquí */
+    /* Cambia enlaces de redes aquí */
+    /* Cambia botón de WhatsApp aquí */
+    /* Cambia link de donación aquí */
+    /* Cambia canal de YouTube aquí */
+  </style>
+</head>
+<body>
+  <!-- Video de fondo animado -->
+  <video id="background-video" autoplay loop muted>
+    <source src="estrellas.mp4" type="video/mp4" />
+  </video>
+
+  <header>
+    <img class="profile-pic" src="Imagen de WhatsApp 2025-06-02 a las 00.27.37_9baa3e65.jpg" alt="Foto de perfil" />
+    <h1>Charly ASMR</h1>
+  </header>
+
+  <!-- Redes sociales -->
+  <!-- Redes sociales -->
+<section class="section">
+  <h2>Mis Redes Sociales</h2>
+  <div class="social-buttons">
+    <a href="https://instagram.com/charlys_asmr" class="social-button">Instagram</a>
+    <a href="https://tiktok.com/@charly asmr" class="social-button">TikTok</a>
+    <a href="https://twitch.tv/charly_asmr" class="social-button">Twitch</a>
+    <a href="https://youtube.com/@carloserm2" class="social-button">YouTube</a>
+    <a href="https://kick.com/charly_asmr" class="social-button">Kick</a>
+    <a href="https://whatsapp.com/channel/0029VbAhgzu5K3zaQEXCqj3k" class="social-button">WhatsApp</a>
+  </div>
+</section>
+      </a>
+    </div>
+  </section>
+
+  <!-- Donaciones -->
+  <section class="section">
+    <h2>Apóyame con tu:</h2>
+    <div class="donation-button">
+      <a href="https://charly-erm.github.io/donaciones/" 
+      <a href="#">Paypal / Transferencia</a>
+    </div>
+  </section>
+
+  <!-- Último video de YouTube -->
+  <section class="section">
+    <h2>Último video de YouTube</h2>
+    <div class="video-container">
+      <iframe id="youtube-latest" width="100%" height="315" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- Previsualizaciones de Lives -->
+  <section class="section">
+    <h2 style="text-align:center">Transmisiones en Vivo</h2>
+
+    <div class="live-preview">
+      <h3 class="live-title">Twitch</h3>
+      <img class="platform-logo" src="twitch-logo.png" alt="Twitch">
+      <div class="video-container">
+        <video id="twitch-preview" autoplay loop muted poster="poster-twitch.jpg">
+          <source src="tv.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <div class="live-preview">
+      <h3 class="live-title">YouTube</h3>
+      <img class="platform-logo" src="youtube-logo.png" alt="YouTube">
+      <div class="video-container">
+        <video id="youtube-preview" autoplay loop muted poster="poster-yt.jpg">
+          <source src="tv.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <div class="live-preview">
+      <h3 class="live-title">Kick</h3>
+      <img class="platform-logo" src="kick-logo.png" alt="Kick">
+      <div class="video-container">
+        <video id="kick-preview" autoplay loop muted poster="poster-kick.jpg">
+          <source src="tv.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+<script src="live-status.js"></script>
+</body>
+</html>
